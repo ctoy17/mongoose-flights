@@ -7,20 +7,46 @@
         <th>Airport</th>
         <th>Flight Number</th>
         <th>Departure Date</th>
+        <th>Flight Details</th>
+        <th>Delete Flight Information</th>
       </tr>
     </thead>
     <tbody>
       <!-- Write the line of EJS to iterate over flights using forEach -->
-      <% flights.forEach(function(f) { %>
+      <% flights.forEach(function(f) { 
+        let today = new Date()
+        let flightDate = f.departs
+        if (today > flightDate){
+      %>
         <tr>
             <td><%= f.airline %></td>
             <td><%= f.airport %></td>
             <td><%= f.flightNo %></td>
             <td><%= f.departs %></td>
             <td><a href="/flights/<%= f._id %>">DETAILS</a></td>
+            <td>
+              <form action="/flights/<%= f._id %>?_method=DELETE" method="POST" id="deleteFlight">
+              <button type="submit" form="deleteFlight">DELETE</button>
+              </form>
+            </td>
         </tr>
-    <% }); %>
+    <% } else { %>
+      <td><%= f.airline %></td>
+      <td><%= f.airport %></td>
+                    <td><%= f.flightNo %></td>
+                    <td>
+                        <%= f.departs %>
+                    </td>
+                    <td><a href="/flights/<%= f._id %>">DETAILS</a></td>
+                    <td>
+                        <form action="/flights/<%= f._id %>?_method=DELETE" method="POST" id="deleteFlight">
+                            <button type="submit" form="deleteFlight">DELETE</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }}); %>
     </tbody>
+</table>
     <button><a href="/">Home</a></button>
     <button><a href="/flights/new">Add Flight</a></button>
 <%- include('../partials/footer') %>
