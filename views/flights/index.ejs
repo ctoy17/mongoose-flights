@@ -39,8 +39,8 @@
                     </td>
                     <td><a href="/flights/<%= f._id %>">DETAILS</a></td>
                     <td>
-                        <form action="/flights/<%= f._id %>?_method=DELETE" method="POST" id="deleteFlight">
-                            <button type="submit" form="deleteFlight">DELETE</button>
+                      <form action="/flights/<%= f.id %>?_method=DELETE" method="POST" class="delete">
+                        <button type="submit">DELETE</button>
                         </form>
                     </td>
                 </tr>

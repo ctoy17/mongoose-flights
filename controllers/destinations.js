@@ -1,6 +1,9 @@
 const res = require('express/lib/response');
 const Flight = require ('../models/flight');
 
+module.exports = {
+    create
+}
 function create(req, res){
     console.log(req.params.id);
     Flight.findById(req.params.id, function(err, flight){
@@ -9,8 +12,4 @@ function create(req, res){
             res.redirect(`/flights/${flight._id}`);
         });
     });
-}
-
-module.exports = {
-    create
 }
