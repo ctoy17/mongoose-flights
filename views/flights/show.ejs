@@ -57,25 +57,35 @@
     <h5>No Destination Information Yet</h5>
   <% } %>
 </div>
-<section id="ticket-info">
+<div class="ticket-info">
   <% if (tickets.length) { %>
-    <% tickets.forEach(function(t) { %>
-      <h4>Seat:</h4>
-        <div>
-          <%= t.seat %>
-        </div>
-      <h4>Price:<h4>
-        <div>
-          $<%= t.price %>
-        </div>
-</section>
-        <form action="/tickets/<%= t._id %>?_method=DELETE" method="POST">
-          <input id="delete-ticket" type="submit" name="" value="Delete Ticket">
-        </form>
-  <% }); %>
-      <% } else { %>
-        <h5>No Ticketing Information Availiable</h5>
-      <% } %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Seat</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% tickets.forEach(function(t) { %>
+          <tr>
+            <td><%= t.seat %></td>
+            <td>$<%= t.price %></td>
+          <td>
+          <form action="/tickets/<%= t._id %>?_method=DELETE" method="POST">
+            <input id="delete-ticket" type="submit" name="" value="Delete Ticket">
+          </form>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <h5>No Ticketing Information Availiable</h5>
+  <% } %>
+</div>
+        
+  
     <button><a href="/">Home</a></button>
     <button><a href="/flights/new">Add Flight</a></button>
     <button><a href="/flights/<%= flight._id %>/tickets/new">Add Ticket</a></button>
