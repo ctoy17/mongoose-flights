@@ -15,3 +15,12 @@ a {
 .home-page{
   text-align: center;
 }
+
+.newFlight{
+  border: 1px solid;
+  width: 30%;
+  min-width: 300px;
+  padding: 40px;
+  margin-bottom: 40px;
+  box-sizing: border-box;
+}
